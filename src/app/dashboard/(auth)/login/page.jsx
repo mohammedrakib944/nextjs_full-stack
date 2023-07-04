@@ -25,7 +25,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="max-w-[400px] mx-auto">
       <form
         action=""
         className="flex flex-col gap-2 mt-5"
