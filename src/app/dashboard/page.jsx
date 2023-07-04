@@ -1,8 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import useSWR from "swr";
 
 const Dashboard = () => {
@@ -62,13 +61,10 @@ const Dashboard = () => {
     }
   };
 
-  if (session.status === "loading") {
-    return <p>Loading...</p>;
-  }
-
-  if (session.status === "unauthenticated") {
-    router.push("/dashboard/login");
-  }
+  useEffect(() => {
+    session.status === "loading" && <p>Loading...</p>;
+    session.status === "unauthenticated" && router.push("/dashboard/login");
+  }, [session]);
 
   return (
     <div>
@@ -78,7 +74,7 @@ const Dashboard = () => {
           {data &&
             data.map((post) => (
               <div
-                id={post._id}
+                key={post._id}
                 className="pb-6 col-span-4 rounded mb-2 flex items-center gap-4"
               >
                 <img

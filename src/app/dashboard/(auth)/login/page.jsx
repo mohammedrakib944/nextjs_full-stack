@@ -1,19 +1,11 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React from "react";
+import { useEffect } from "react";
 
 const Login = () => {
   const session = useSession();
   const router = useRouter();
-
-  if (session.status === "loading") {
-    return <p>Loading...</p>;
-  }
-
-  if (session.status === "authenticated") {
-    router.push("/dashboard");
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,11 +16,16 @@ const Login = () => {
     signIn("credentials", { email, password, redirect: false });
   };
 
+  useEffect(() => {
+    session.status === "loading" && <p>Loading...</p>;
+    session.status === "authenticated" && router.push("/dashboard");
+  }, [session]);
+
   return (
     <div className="max-w-[400px] mx-auto">
       <form
         action=""
-        className="flex flex-col gap-2 mt-5"
+        className="flex flex-col gap-2 mt-5 mb-6"
         onSubmit={handleSubmit}
       >
         <p>Email</p>

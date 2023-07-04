@@ -26,7 +26,7 @@
     @apply py-2 px-6 duration-100 text-white bg-blue-500 hover:bg-blue-400 rounded-full;
   }
   .input {
-    @apply p-2 rounded text-black outline-none;
+    @apply p-2 rounded text-black border outline-none;
   }
 }
 

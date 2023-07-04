@@ -29,7 +29,10 @@ const page = async () => {
   return (
     <div className="mt-10">
       {data.map((post) => (
-        <div id={post.id} className="pb-6 rounded mb-2 flex items-center gap-4">
+        <div
+          key={post.id}
+          className="pb-6 rounded mb-2 flex items-center gap-4"
+        >
           <img
             src={post.image}
             className="w-[300px] rounded"
