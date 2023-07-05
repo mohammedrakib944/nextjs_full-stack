@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { clientURL } from "@/utils/sceret";
 import Link from "next/link";
 
+/*
 // Put this function anywhere
 async function getData() {
   const res = await fetch(`${clientURL}/api/posts`, {
@@ -22,9 +23,10 @@ export const metadata = {
   title: "Blog",
   description: "Rakibuzzaman",
 };
-
+*/
 const page = async () => {
-  const data = await getData();
+  // const data = await getData();
+  const data = null;
   return (
     <div className="mt-10">
       {data?.map((post) => (

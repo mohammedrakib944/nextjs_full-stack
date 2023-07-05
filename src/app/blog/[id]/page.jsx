@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { clientURL } from "@/utils/sceret";
 
+/*
 // Put this function anywhere
 async function getData(id = null) {
   const res = await fetch(`${clientURL}/api/posts/${id}`, {
@@ -16,7 +17,7 @@ async function getData(id = null) {
 
   return res.json();
 }
-
+*/
 // Daynamic metadeta
 export async function generateMetadata({ params }) {
   const post = await getData(params.id);
