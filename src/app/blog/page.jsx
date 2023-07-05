@@ -5,8 +5,8 @@ import Link from "next/link";
 import { headers } from "next/headers";
 
 // Put this function anywhere
-async function getData(host) {
-  const res = await fetch(`https://${host}/api/posts`, {
+async function getData(host, protocol) {
+  const res = await fetch(`${protocol}://${host}/api/posts`, {
     // next: {revalidate: 10}
     cache: "no-store",
     // cache: "force-cache",
@@ -26,7 +26,10 @@ export const metadata = {
 
 const page = async () => {
   const host = headers().get("host");
-  const data = await getData(host);
+  const refer = headers().get("referer");
+  const protocol = refer.split(":")[0];
+
+  const data = await getData(host, protocol);
 
   return (
     <div className="mt-10">

@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import { clientURL } from "@/utils/sceret";
+import { headers } from "next/headers";
 
-async function getData(id = null) {
-  const res = await fetch(`${clientURL}/api/posts/${id}`, {
+async function getData(id = null, host, protocol) {
+  const res = await fetch(`${protocol}://${host}/api/posts/${id}`, {
     // next: {revalidate: 10}
     cache: "no-store",
     // cache: "force-cache",
@@ -18,7 +19,10 @@ async function getData(id = null) {
 
 // Daynamic metadeta
 export async function generateMetadata({ params }) {
-  const post = await getData(params.id);
+  const host = headers().get("host");
+  const refer = headers().get("referer");
+  const protocol = refer.split(":")[0];
+  const post = await getData(params.id, host, protocol);
   return { title: post.title, description: post.description };
 }
 
