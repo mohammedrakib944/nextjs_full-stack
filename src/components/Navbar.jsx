@@ -26,7 +26,7 @@ const Navbar = () => {
   const session = useSession();
   return (
     <div className="flex justify-between py-4">
-      <div className="font-bold text-lg">Rakib's</div>
+      <div className="font-bold text-lg">Rakib</div>
       <ThemeToggle />
       <ul className="flex gap-4">
         {links.map((link) => (

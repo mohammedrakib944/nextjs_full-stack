@@ -19,7 +19,7 @@ const Login = () => {
   useEffect(() => {
     session.status === "loading" && <p>Loading...</p>;
     session.status === "authenticated" && router.push("/dashboard");
-  }, [session]);
+  }, [session, router]);
 
   return (
     <div className="max-w-[400px] mx-auto">

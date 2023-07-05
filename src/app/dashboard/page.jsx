@@ -64,7 +64,7 @@ const Dashboard = () => {
   useEffect(() => {
     session.status === "loading" && <p>Loading...</p>;
     session.status === "unauthenticated" && router.push("/dashboard/login");
-  }, [session]);
+  }, [session, router]);
 
   return (
     <div>
