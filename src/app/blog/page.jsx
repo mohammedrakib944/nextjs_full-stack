@@ -2,17 +2,18 @@ import React from "react";
 import { notFound } from "next/navigation";
 import { clientURL } from "@/utils/sceret";
 import Link from "next/link";
+import { headers } from "next/headers";
 
 // Put this function anywhere
-async function getData() {
-  const res = await fetch(`${clientURL}/api/posts`, {
+async function getData(host) {
+  const res = await fetch(`https://${host}/api/posts`, {
     // next: {revalidate: 10}
     cache: "no-store",
     // cache: "force-cache",
   });
 
   if (!res.ok) {
-    return [];
+    return notFound();
   }
 
   return res.json();
@@ -24,7 +25,8 @@ export const metadata = {
 };
 
 const page = async () => {
-  const data = await getData();
+  const host = headers().get("host");
+  const data = await getData(host);
 
   return (
     <div className="mt-10">
