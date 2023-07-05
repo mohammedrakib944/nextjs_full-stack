@@ -28,25 +28,26 @@ const page = async () => {
 
   return (
     <div className="mt-10">
-      {data.map((post) => (
-        <div
-          key={post.id}
-          className="pb-6 rounded mb-2 flex items-center gap-4"
-        >
-          <img
-            src={post.image}
-            className="w-[300px] rounded"
-            alt={data.title}
-          />
-          <div>
-            <h2 className="uppercase mb-2">{post.title}</h2>
-            <p>{post.description}</p>
-            <Link href={`/blog/${post._id}`}>
-              <button className="btn mt-2">Read More</button>
-            </Link>
+      {data &&
+        data?.map((post) => (
+          <div
+            key={post.id}
+            className="pb-6 rounded mb-2 flex items-center gap-4"
+          >
+            <img
+              src={post.image}
+              className="w-[300px] rounded"
+              alt={data.title}
+            />
+            <div>
+              <h2 className="uppercase mb-2">{post.title}</h2>
+              <p>{post.description}</p>
+              <Link href={`/blog/${post._id}`}>
+                <button className="btn mt-2">Read More</button>
+              </Link>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };

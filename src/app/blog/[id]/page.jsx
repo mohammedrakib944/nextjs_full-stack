@@ -1,4 +1,3 @@
-import React from "react";
 import { notFound } from "next/navigation";
 import { clientURL } from "@/utils/sceret";
 
@@ -25,7 +24,7 @@ export async function generateMetadata({ params }) {
 }
 
 const page = async ({ params }) => {
-  const data = await getData(params.id);
+  const data = await getData(params?.id);
   return (
     <div>
       <img src={data?.image} alt={data?.title} />
